@@ -53,16 +53,32 @@ if "current_cost" not in st.session_state:
 if "last_query_cost" not in st.session_state:
     st.session_state.last_query_cost = 0
 
-# App title and description with yelladawg image
-col1, col2 = st.columns([5, 1])
-with col1:
-    # App title and description with baseball emoji
+# Load yelladawg image and convert to base64 for inline display
+def get_image_base64(image_path):
+    if os.path.exists(image_path):
+        with open(image_path, "rb") as img_file:
+            import base64
+            return base64.b64encode(img_file.read()).decode()
+    return ""
+
+# Get base64 encoded image
+yelladawg_base64 = get_image_base64("pics/yelladawg.png")
+
+# Create title with inline image
+if yelladawg_base64:
+    title_html = f"""
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <h1>⚾ PC Softball Rules Assistant 
+        <img src="data:image/png;base64,{yelladawg_base64}" style="height: 1.2em; vertical-align: middle;">
+        </h1>
+    </div>
+    """
+    st.markdown(title_html, unsafe_allow_html=True)
+else:
     st.title("⚾ PC Softball Rules Assistant")
-    st.markdown("Find information about the rules of the Panama City softball league, based on USSSA and local community rules. For best results, ask specific questions about rules, equipment, field dimensions, or game procedures.")
-with col2:
-    # Add yelladawg image next to title
-    if os.path.exists("pics/yelladawg.png"):
-        st.image("pics/yelladawg.png", width=100)
+
+# Description
+st.markdown("Find information about the rules of the Panama City softball league, based on USSSA and local community rules. For best results, ask specific questions about rules, equipment, field dimensions, or game procedures.")
 
 # Add sidebar with information FIRST
 with st.sidebar:
