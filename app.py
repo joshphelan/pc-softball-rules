@@ -7,6 +7,13 @@ import os
 import streamlit as st
 import time
 
+# Set page configuration
+st.set_page_config(
+    page_title="PC Softball Rules Assistant",
+    page_icon="⚾",
+    layout="wide"
+)
+
 # Hide GitHub icon
 hide_github_icon = """
 <style>
@@ -28,12 +35,6 @@ from src.utils.pdf_loader import load_and_process_pdf
 from src.utils.text_splitter import split_text, split_markdown
 from src.utils.embeddings import get_embeddings
 
-# Set page configuration
-st.set_page_config(
-    page_title="PC Softball Rules Assistant",
-    page_icon="⚾",
-    layout="wide"
-)
 
 # Initialize session state for tracking costs
 if "total_tokens" not in st.session_state:
