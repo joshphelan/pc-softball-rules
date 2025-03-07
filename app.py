@@ -14,15 +14,21 @@ st.set_page_config(
     layout="wide"
 )
 
-# Hide GitHub icon
-hide_github_icon = """
+# Hide GitHub icon and other Streamlit UI elements
+hide_streamlit_style = """
 <style>
-#GithubIcon {
-  visibility: hidden;
+/* Hide GitHub icon */
+.stGitHubLink {
+    visibility: hidden;
 }
+
+/* Hide hamburger menu and footer */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
 </style>
 """
-st.markdown(hide_github_icon, unsafe_allow_html=True)
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 from langchain_openai import ChatOpenAI
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
@@ -251,7 +257,7 @@ These questions are regarding a slow pitch softball league in Panama City. You a
 1. When Panama City Community rules conflict with USSSA rules, the Panama City Community rules take precedence.
 2. Clearly indicate in your answer when you're referring to Panama City Community rules vs. USSSA rules.
 3. If the question is directly addressed in the rulebook, begin your answer by stating which ruleset (Panama City Community or USSSA) primarily addresses this question. Always start with Panama City Community rules over USSSA.
-4. If the question is not related to softball, politely decline to answer and explain that you can only provide information about the softball league.
+4. If the question is not at all related to softball, politely decline to answer and explain that you can only provide information about the softball league. Do not decline unless it is clearly off-topic.
 
 Question: {question}
 """
