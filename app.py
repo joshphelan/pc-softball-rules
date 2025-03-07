@@ -27,6 +27,32 @@ hide_streamlit_style = """
 footer {visibility: hidden;}
 </style>
 """
+
+# Hide GitHub icon specifically
+hide_github_style = """
+<style>
+/* Target the GitHub icon specifically - it's the rightmost icon */
+.stToolbar > div:last-child {
+    display: none;
+}
+
+/* Alternative selectors if the above doesn't work */
+button[data-testid="baseButton-headerNoPadding"] svg[viewBox="0 0 16 16"] {
+    display: none;
+}
+
+/* Another approach targeting all GitHub-like icons */
+svg[viewBox="0 0 16 16"] {
+    display: none;
+}
+
+/* If we need to be more specific */
+.stToolbar button:nth-child(4) {
+    display: none;
+}
+</style>
+"""
+
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 from langchain_openai import ChatOpenAI
