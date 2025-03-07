@@ -413,8 +413,6 @@ if query:
                         # Display as a comma-separated list
                         st.markdown(", ".join(page_links))
             
-            # Force a rerun to update the cost display in the sidebar
-            st.experimental_rerun()
             
         except Exception as e:
             error_message = f"Error: {str(e)}"
