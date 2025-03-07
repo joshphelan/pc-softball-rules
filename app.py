@@ -59,10 +59,10 @@ with st.sidebar:
     st.subheader("How It Works")
     st.markdown("""
     1. **Retrieval**: LangChain finds relevant rules
-    2. **Generation**: GPT-3.5 creates answers
+    2. **Generation**: GPT-4o mini creates answers
     
     **Tech Stack**:
-    - LLM: GPT-3.5 Turbo
+    - LLM: GPT-4o mini
     - Embeddings: MiniLM-L6-v2
     - Retrieval: LangChain + Chroma
     """)
@@ -226,7 +226,7 @@ def initialize_qa_chain():
     # Create LLM
     llm = ChatOpenAI(
         api_key=st.secrets["OPENAI_API_KEY"],
-        model_name=st.secrets.get("OPENAI_MODEL_NAME", "gpt-3.5-turbo"),
+        model_name=st.secrets.get("OPENAI_MODEL_NAME", "gpt-4o-mini"),
         temperature=0,
     )
     
@@ -286,10 +286,10 @@ if query:
             response = qa_chain.invoke(query)
             
             # Calculate approximate cost (very rough estimate)
-            # Assuming $0.002 per 1K tokens for embeddings and $0.002 per 1K tokens for GPT-3.5
+            # GPT-4o mini: $0.00015/1K input tokens, $0.0006/1K output tokens
             tokens_estimate = len(query.split()) * 2 + len(response.split()) * 2
-            query_cost = (len(query.split()) / 1000) * 0.002
-            response_cost = (len(response.split()) / 1000) * 0.002
+            query_cost = (len(query.split()) / 1000) * 0.00015
+            response_cost = (len(response.split()) / 1000) * 0.0006
             total_cost = query_cost + response_cost
             
             # Update session state
