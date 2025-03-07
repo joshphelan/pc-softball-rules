@@ -24,12 +24,11 @@ jiter==0.8.2
 joblib==1.4.2
 jsonpointer==2.1
 kubernetes==32.0.1
-langchain==0.2.0
-langchain-community==0.0.13
-langchain-text-splitters==0.0.1
 langchain-core==0.3.41
+langchain-community==0.3.0
 langchain-huggingface==0.1.2
 langchain-openai==0.3.7
+langchain-text-splitters==0.0.1
 mkl-service==2.4.0
 mmh3==5.1.0
 monotonic==1.6
@@ -50,6 +49,7 @@ opentelemetry-semantic-conventions==0.51b0
 opentelemetry-util-http==0.51b0
 overrides==7.7.0
 posthog==3.19.0
+protobuf==5.26.0
 pyasn1==0.6.1
 pyasn1_modules==0.4.1
 PyPika==0.48.9
@@ -64,6 +64,7 @@ scipy==1.15.2
 sentence-transformers==3.4.1
 shellingham==1.5.4
 starlette==0.46.0
+streamlit==1.32.0
 sympy==1.13.1
 threadpoolctl==3.5.0
 tiktoken==0.9.0

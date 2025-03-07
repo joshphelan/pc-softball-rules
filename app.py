@@ -7,7 +7,7 @@ from langchain_community.vectorstores import Chroma
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
-from langchain.schema import Document
+from langchain_core.documents import Document
 
 from src.utils.pdf_loader import load_and_process_pdf
 from src.utils.text_splitter import split_text, split_markdown
