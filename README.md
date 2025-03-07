@@ -21,6 +21,14 @@ This application uses a RAG (Retrieval-Augmented Generation) architecture:
 4. **Retrieval**: When a question is asked, the system performs a similarity search to retrieve relevant text chunks from the vector database
 5. **Generation**: An LLM generates answers based on the retrieved context, prioritizing community rules
 
+### Tech Stack
+
+- **LLM**: GPT-4o mini - Provides efficient and accurate responses with lower cost than larger models
+- **Embeddings**: MiniLM-L6-v2 - Sentence Transformers model that creates high-quality vector representations
+- **Orchestration**: LangChain - Framework that manages the RAG pipeline, document processing, and LLM interactions
+- **Vector Database**: Chroma - Specialized database that stores and retrieves vector embeddings for similarity search
+- **Frontend**: Streamlit - Creates an interactive web interface with minimal code
+
 ## Requirements
 
 - Python 3.9+

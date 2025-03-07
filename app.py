@@ -78,11 +78,6 @@ with st.sidebar:
     st.markdown("""
     1. **Retrieval**: LangChain finds relevant rules
     2. **Generation**: GPT-4o mini creates answers
-    
-    **Tech Stack**:
-    - LLM: GPT-4o mini
-    - Embeddings: MiniLM-L6-v2
-    - Retrieval: LangChain + Chroma
     """)
     
     # Add USSSA rulebook link
