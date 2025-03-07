@@ -6,6 +6,16 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import os
 import streamlit as st
 import time
+
+# Hide GitHub icon
+hide_github_icon = """
+<style>
+#GithubIcon {
+  visibility: hidden;
+}
+</style>
+"""
+st.markdown(hide_github_icon, unsafe_allow_html=True)
 from langchain_openai import ChatOpenAI
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
@@ -34,6 +44,8 @@ if "total_cost" not in st.session_state:
     st.session_state.total_cost = 0
 if "current_cost" not in st.session_state:
     st.session_state.current_cost = 0
+if "last_query_cost" not in st.session_state:
+    st.session_state.last_query_cost = 0
 
 # App title and description with yelladawg image
 col1, col2 = st.columns([5, 1])
@@ -52,7 +64,7 @@ with st.sidebar:
     
     # Usage statistics
     st.subheader("Usage Stats")
-    st.metric("Current Search Cost", f"${st.session_state.current_cost:.6f}")
+    st.metric("Current Search Cost", f"${st.session_state.last_query_cost:.6f}")
     st.metric("Total Session Cost", f"${st.session_state.total_cost:.6f}")
     
     # RAG explanation
@@ -236,10 +248,11 @@ def initialize_qa_chain():
 {context}
 
 IMPORTANT INSTRUCTIONS:
-These questions are regarding a slow pitch softball league in Panama City. Assume all questions are about this league. 
+These questions are regarding a slow pitch softball league in Panama City. You are a specialized assistant that ONLY answers questions about this league.
 1. When Panama City Community rules conflict with USSSA rules, the Panama City Community rules take precedence.
 2. Clearly indicate in your answer when you're referring to Panama City Community rules vs. USSSA rules.
 3. If the question is directly addressed in the rulebook, begin your answer by stating which ruleset (Panama City Community or USSSA) primarily addresses this question. Always start with Panama City Community rules over USSSA.
+4. If the question is not related to softball, politely decline to answer and explain that you can only provide information about the softball league.
 
 Question: {question}
 """
@@ -295,6 +308,7 @@ if query:
             # Update session state
             st.session_state.total_tokens += tokens_estimate
             st.session_state.current_cost = total_cost
+            st.session_state.last_query_cost = total_cost  # Store for next rerun
             st.session_state.total_cost += total_cost
             
             # Display response
