@@ -68,8 +68,8 @@ yelladawg_base64 = get_image_base64("pics/yelladawg.png")
 if yelladawg_base64:
     title_html = f"""
     <div style="display: flex; align-items: center; gap: 10px;">
-        <h1>⚾ PC Softball Rules Assistant 
-        <img src="data:image/png;base64,{yelladawg_base64}" style="height: 1.2em; vertical-align: middle;">
+        <h1> <img src="data:image/png;base64,{yelladawg_base64}" style="height: 1.2em; vertical-align: middle;">
+        PC Softball Rules Assistant
         </h1>
     </div>
     """
