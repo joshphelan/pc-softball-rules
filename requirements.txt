@@ -28,6 +28,7 @@ langchain-core==0.3.41
 langchain-community==0.3.0
 langchain-huggingface==0.1.2
 langchain-openai==0.3.7
+langchain-text-splitters==0.0.5
 mkl-service==2.4.0
 mmh3==5.1.0
 monotonic==1.6
